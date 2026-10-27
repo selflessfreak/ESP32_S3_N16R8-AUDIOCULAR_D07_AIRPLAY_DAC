@@ -51,6 +51,8 @@ set( SRC_FILES
 list(APPEND SRC_FILES "audio/audio_output_common.c")
 if(CONFIG_AUDIO_OUTPUT_SPDIF)
     list(APPEND SRC_FILES "audio/audio_output_spdif.c")
+elseif(CONFIG_AUDIO_OUTPUT_UAC_HOST)
+    list(APPEND SRC_FILES "audio/audio_output_uac_host.c")
 elseif(CONFIG_AUDIO_OUTPUT_USB)
     list(APPEND SRC_FILES "audio/audio_output_usb.c")
 else()
@@ -84,6 +86,7 @@ set( DEPS
     esp_netif
     esp_event
     esp_ringbuf
+    usb
     esp_driver_i2s
     esp_timer
     esp_http_server

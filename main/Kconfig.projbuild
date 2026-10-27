@@ -168,6 +168,13 @@ menu "Airplay ESP Configuration"
         config AUDIO_OUTPUT_SPDIF
             bool "SPDIF (bit-banged via I2S)"
 
+        config AUDIO_OUTPUT_UAC_HOST
+            bool "USB Audio HOST (external USB DAC; experimental)"
+            depends on IDF_TARGET_ESP32S3
+            help
+                ESP32-S3 as USB UAC1 host, 48000 Hz / 16-bit stereo output.
+                Uses the native USB D-/D+ pair GPIO19/GPIO20.
+                Requires USB-C source CC wiring and protected 5V VBUS.
         config AUDIO_OUTPUT_USB
             bool "USB Audio Class (UAC)"
             depends on IDF_TARGET_ESP32S3 || IDF_TARGET_ESP32S2 || IDF_TARGET_ESP32P4
@@ -184,7 +191,7 @@ menu "Airplay ESP Configuration"
     choice OUTPUT_SAMPLE_RATE
         prompt "Output sample rate"
         default OUTPUT_SAMPLE_RATE_44100
-        depends on !DAC_TAS57XX && !DAC_TAS58XX && !AUDIO_OUTPUT_USB
+        depends on !DAC_TAS57XX && !DAC_TAS58XX && !AUDIO_OUTPUT_USB && !AUDIO_OUTPUT_UAC_HOST
         help
             Sample rate for I2S/SPDIF output. If the AirPlay source sends a
             different rate, the audio is resampled automatically.
@@ -197,6 +204,7 @@ menu "Airplay ESP Configuration"
 
     config OUTPUT_SAMPLE_RATE_HZ
         int
+        default 48000 if AUDIO_OUTPUT_UAC_HOST
         default 48000 if AUDIO_OUTPUT_USB
         default 48000 if OUTPUT_SAMPLE_RATE_48000
         default 44100

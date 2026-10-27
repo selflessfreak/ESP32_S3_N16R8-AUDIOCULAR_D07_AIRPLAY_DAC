@@ -1,0 +1,5 @@
+# D07 USB host development build (not yet enabled at the audio backend level)
+# Inherits generic ESP32-S3 N16R8 defaults, including 16 MB flash and octal PSRAM.
+CONFIG_ESPTOOLPY_FLASHSIZE_16MB=y
+CONFIG_SPIRAM_MODE_OCT=y
+CONFIG_AUDIO_OUTPUT_UAC_HOST=y
