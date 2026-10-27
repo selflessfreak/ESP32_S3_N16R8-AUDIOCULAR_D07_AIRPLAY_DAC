@@ -10,6 +10,7 @@
 #include "audio_output.h"
 #include "audio_receiver.h"
 #include "audio_resample.h"
+#include "sf_peq_bridge.h" /* SF_PEQ_BRIDGE_INTEGRATED */
 #include "led.h"
 #include "rtsp_server.h"
 #include "esp_log.h"
@@ -190,6 +191,7 @@ static void playback(void *arg) {
             play = out;
         }
         if (!output_frames) continue;
+        sf_peq_bridge_process_i16(play, output_frames);
         apply_volume(play, output_frames * 2);
         led_audio_feed(play, output_frames);
         esp_err_t err = uac_host_device_write(s_dev, (uint8_t *)play,
@@ -219,6 +221,7 @@ esp_err_t audio_output_init(void) {
     err = uac_host_install(&cfg);
     if (err != ESP_OK) return err;
     if (!audio_resample_init(44100, RATE, 2)) return ESP_FAIL;
+    sf_peq_bridge_init(RATE);
     ESP_LOGI(TAG, "USB Audio Host initialized, waiting for DAC");
     return ESP_OK;
 }

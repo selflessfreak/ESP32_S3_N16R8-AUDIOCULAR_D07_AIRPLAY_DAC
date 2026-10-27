@@ -52,7 +52,9 @@ list(APPEND SRC_FILES "audio/audio_output_common.c")
 if(CONFIG_AUDIO_OUTPUT_SPDIF)
     list(APPEND SRC_FILES "audio/audio_output_spdif.c")
 elseif(CONFIG_AUDIO_OUTPUT_UAC_HOST)
-    list(APPEND SRC_FILES "audio/audio_output_uac_host.c")
+    list(APPEND SRC_FILES "audio/audio_output_uac_host.c"
+    "audio/peq32.c"
+    "audio/sf_peq_bridge.c")
 elseif(CONFIG_AUDIO_OUTPUT_USB)
     list(APPEND SRC_FILES "audio/audio_output_usb.c")
 else()
