@@ -1,0 +1,16 @@
+{
+    "name":  "ESP32-S3 N16R8 Audiocular D07 AirPlay (Experimental)",
+    "version":  "0.1.0-beta",
+    "new_install_prompt_erase":  true,
+    "builds":  [
+                   {
+                       "chipFamily":  "ESP32-S3",
+                       "parts":  [
+                                     {
+                                         "offset":  0,
+                                         "path":  "firmware/esp32s3-n16r8-d07-0.1.0-beta-merged.bin"
+                                     }
+                                 ]
+                   }
+               ]
+}
