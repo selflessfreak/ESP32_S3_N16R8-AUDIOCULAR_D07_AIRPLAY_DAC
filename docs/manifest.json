@@ -1,6 +1,6 @@
-{
-    "name":  "ESP32-S3 N16R8 Audiocular D07 AirPlay (Experimental)",
-    "version":  "0.1.0-beta",
+﻿{
+    "name":  "SF-AirPlay-v1.0 (Experimental)",
+    "version":  "1.0.0-beta",
     "new_install_prompt_erase":  true,
     "builds":  [
                    {
