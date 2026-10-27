@@ -78,6 +78,31 @@ static bool supports_pcm_48k(uac_host_device_handle_t dev) {
     for (uint8_t alt = 1; alt <= info.iface_alt_num; ++alt) {
         uac_host_dev_alt_param_t p = {0};
         if (uac_host_get_device_alt_param(dev, alt, &p) != ESP_OK) continue;
+        /* SF_D07_FORMAT_DIAGNOSTICS_V1: inspect modes without changing playback. */
+        ESP_LOGI(TAG, "UAC alt=%u format=%u channels=%u bits=%u subframe=%u freq_count=%u",
+                 (unsigned)alt, (unsigned)p.format, (unsigned)p.channels,
+                 (unsigned)p.bit_resolution, (unsigned)p.subframe_size,
+                 (unsigned)p.sample_freq_type);
+        if (p.sample_freq_type == 0) {
+            ESP_LOGI(TAG, "UAC alt=%u continuous rate=%lu..%lu Hz",
+                     (unsigned)alt, (unsigned long)p.sample_freq_lower,
+                     (unsigned long)p.sample_freq_upper);
+        } else {
+            for (size_t fi = 0; fi < p.sample_freq_type && fi < UAC_FREQ_NUM_MAX; ++fi) {
+                ESP_LOGI(TAG, "UAC alt=%u rate[%u]=%lu Hz",
+                         (unsigned)alt, (unsigned)fi, (unsigned long)p.sample_freq[fi]);
+            }
+        }
+        if (p.format == 1 && p.channels == 2 && p.bit_resolution == 24 &&
+            (p.subframe_size == 3 || p.subframe_size == 4)) {
+            bool hz96 = (p.sample_freq_type == 0)
+                ? (p.sample_freq_lower <= 96000 && p.sample_freq_upper >= 96000)
+                : false;
+            for (size_t fi = 0; !hz96 && fi < p.sample_freq_type && fi < UAC_FREQ_NUM_MAX; ++fi)
+                hz96 = p.sample_freq[fi] == 96000;
+            if (hz96) ESP_LOGW(TAG, "CANDIDATE 24-bit/96kHz stereo mode on alt=%u, %u-byte subframe (not yet activated)",
+                                (unsigned)alt, (unsigned)p.subframe_size);
+        }
         if (p.format != 1 || p.channels != 2 || p.bit_resolution != 16 || p.subframe_size != 2)
             continue;
         if (p.sample_freq_type == 0) {
