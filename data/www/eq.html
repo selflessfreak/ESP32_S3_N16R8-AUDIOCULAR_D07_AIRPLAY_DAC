@@ -49,7 +49,51 @@ body{font-family:-apple-system,system-ui,sans-serif;background:linear-gradient(1
 .tab.on{background:#e94560;border-color:#e94560;color:#fff}
 .form-group select{width:100%;background:rgba(0,0,0,0.3);border:1px solid rgba(255,255,255,0.1);border-radius:8px;color:#fff;padding:10px 12px;font-size:13px;cursor:pointer}
 .form-group select option{background:#16213e}
-</style></head><body>
+</style>
+<style id='sf-apple-skin'>
+/* SF-AirPlay — modern, Apple-inspired responsive UI skin.
+   No Apple trademarks or assets. Works over local SPIFFS without internet. */
+:root {color-scheme:dark;--sf-bg:#090b12;--sf-panel:rgba(27,31,44,.78);--sf-panel2:rgba(38,44,61,.72);--sf-border:rgba(255,255,255,.12);--sf-text:#f5f7ff;--sf-muted:#a9b2c8;--sf-accent:#78aaff;--sf-green:#35d49c;--sf-red:#ff708a;--sf-shadow:0 22px 75px rgba(0,0,0,.24)}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0!important;min-height:100vh!important;background:radial-gradient(ellipse at 15% 0%,rgba(66,96,167,.29),transparent 48%),radial-gradient(ellipse at 90% 20%,rgba(112,68,145,.19),transparent 45%),var(--sf-bg)!important;color:var(--sf-text)!important;font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","Segoe UI",Arial,sans-serif!important;font-size:15px!important;line-height:1.52!important;-webkit-font-smoothing:antialiased;padding:0 16px 66px!important}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;background-image:linear-gradient(145deg,rgba(255,255,255,.024),transparent 38%);z-index:-1}
+.wrap{max-width:900px!important;margin:0 auto!important}
+.sf-topbar{max-width:900px;margin:0 auto 16px;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:23px 0 15px;border-bottom:1px solid var(--sf-border)}
+.sf-brand{display:flex;align-items:center;gap:11px;text-decoration:none;color:var(--sf-text);font-weight:720;letter-spacing:-.045em;font-size:20px}
+.sf-logo{height:35px;width:35px;display:grid;place-items:center;background:linear-gradient(145deg,#7badff,#927dff);color:#fff;border-radius:12px;box-shadow:0 8px 26px #4b75dd45;font-size:22px}
+.sf-right{display:flex;align-items:center;gap:10px}.sf-tag{font-size:11px;color:var(--sf-muted);padding:6px 10px;border:1px solid var(--sf-border);border-radius:100px;white-space:nowrap}.sf-theme-btn{border:1px solid var(--sf-border);border-radius:13px;background:var(--sf-panel2);color:var(--sf-text);font-size:17px;cursor:pointer;padding:7px 11px;min-width:40px}
+.header{text-align:left!important;padding:18px 0 27px!important}.header h1{font-size:clamp(27px,5vw,40px)!important;letter-spacing:-.055em;line-height:1.14;font-weight:740!important;margin:0 0 10px!important;color:var(--sf-text)!important}.header p,.sub{color:var(--sf-muted)!important;font-size:14px!important}
+.card,.status-bar,.toolbar{background:var(--sf-panel)!important;border:1px solid var(--sf-border)!important;box-shadow:var(--sf-shadow)!important;border-radius:24px!important;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);padding:24px!important;margin-bottom:18px!important;color:var(--sf-text)!important}
+.card h2{font-size:18px!important;font-weight:680!important;letter-spacing:-.025em;color:var(--sf-text)!important;margin:0 0 20px!important}
+.status-bar{color:var(--sf-text)!important}.status-bar.ok{border-color:rgba(53,212,156,.3)!important}.status-bar.err{border-color:rgba(255,112,138,.3)!important}
+.form-group label,.lbl,label{color:var(--sf-muted)!important;letter-spacing:.03em;font-weight:570!important}
+input[type=text],input[type=password],input[type=number],input[type=file],textarea,select{background:rgba(6,11,25,.42)!important;color:var(--sf-text)!important;border:1px solid var(--sf-border)!important;border-radius:13px!important;max-width:100%;font-family:inherit!important}
+input[type=text],input[type=password],input[type=number],select,textarea{padding:11px 13px!important;min-height:44px}
+input:focus,textarea:focus,select:focus{outline:2px solid rgba(120,170,255,.45)!important;outline-offset:1px}
+input[type=range]{accent-color:var(--sf-accent)!important}
+.btn,.btn-sm,button:not(.sf-theme-btn):not(.tab){border-radius:13px!important;font-family:inherit!important;font-weight:610!important;transition:transform .15s,background .15s,border-color .15s}
+.btn:hover,.btn-sm:hover,button:hover{transform:translateY(-1px)}.btn:active,button:active{transform:translateY(0)}
+.btn-primary{background:linear-gradient(135deg,#4487ef,#6564e8)!important;color:white!important;border:1px solid rgba(255,255,255,.12)!important}
+.btn-secondary,.btn-sm,.btn:not(.btn-primary):not(.btn-danger){background:var(--sf-panel2)!important;color:var(--sf-text)!important;border:1px solid var(--sf-border)!important}
+.btn-danger{background:rgba(255,112,138,.15)!important;color:#ff8ea4!important;border:1px solid rgba(255,112,138,.3)!important}
+a{color:var(--sf-accent)!important}.nav a{font-size:14px!important;text-decoration:none!important}
+.info-item,.wifi-item,.row:not(.sf-topbar .row){border-radius:14px!important}.info-item,.wifi-item{background:rgba(255,255,255,.035)!important;border:1px solid var(--sf-border)!important;padding:14px!important}
+.wifi-item.sel{border-color:var(--sf-accent)!important;background:rgba(120,170,255,.15)!important}
+.info-grid{gap:12px!important}.info-item{min-width:0;overflow-wrap:anywhere}
+.eq-container{height:285px!important;overflow-x:auto;justify-content:flex-start!important;padding:16px 0!important;scrollbar-width:thin}.eq-band{min-width:39px!important}.eq-band .val{color:var(--sf-accent)!important}.eq-band .freq,.hint{color:var(--sf-muted)!important}
+.eq-band input[type=range]::-webkit-slider-thumb{background:var(--sf-accent)!important}.eq-band input[type=range]::-moz-range-thumb{background:var(--sf-accent)!important}
+.tabs .tab,.tab{border-radius:10px!important;border:1px solid var(--sf-border)!important;background:var(--sf-panel2)!important;color:var(--sf-text)!important}.tab.on{background:rgba(120,170,255,.25)!important;border-color:var(--sf-accent)!important}
+.msg.info,.msg.ok,.msg.err{border:1px solid var(--sf-border);border-radius:10px!important;color:var(--sf-text)}.msg.ok{background:rgba(53,212,156,.13)!important}.msg.err{background:rgba(255,112,138,.13)!important}
+.sf-footer{text-align:center;color:var(--sf-muted);font-size:12px;padding:20px 6px 10px;max-width:900px;margin:auto}
+body.sf-light{color-scheme:light;--sf-bg:#f3f6fc;--sf-panel:rgba(255,255,255,.86);--sf-panel2:rgba(226,233,246,.92);--sf-border:rgba(24,43,77,.13);--sf-text:#162237;--sf-muted:#64728a;--sf-accent:#176dd1;--sf-shadow:0 18px 52px rgba(28,55,94,.09)}
+body.sf-light input[type=text],body.sf-light input[type=password],body.sf-light input[type=number],body.sf-light select,body.sf-light textarea{background:rgba(246,249,255,.95)!important}
+body.sf-light .wifi-item,body.sf-light .info-item{background:rgba(232,240,254,.38)!important}
+@media(max-width:570px){body{padding:0 12px 44px!important}.sf-topbar{padding:16px 3px 10px}.sf-tag{display:none}.header{padding:16px 2px 21px!important}.card,.status-bar,.toolbar{padding:18px!important;border-radius:20px!important}.card h2{font-size:17px!important}.info-grid{grid-template-columns:1fr 1fr!important}.eq-band{min-width:41px!important}.sf-brand{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+</style>
+</head><body>
 <div class='wrap'>
 <div class='header'><h1>Equalizer</h1><p id='eq-subtitle'>15-Band Parametric EQ</p></div>
 <div class='nav'><a href='/'>&#8592; Back to Settings</a></div>
@@ -426,4 +470,26 @@ window.onload=async function(){
   await loadSub();
   await loadBiamp();
 };
-</script></body></html>
+</script>
+<script id='sf-apple-controller'>
+(function(){
+  "use strict";
+  var root=document.body;
+  if(!root || document.querySelector('.sf-topbar')) return;
+  var top=document.createElement('div');top.className='sf-topbar';
+  var brand=document.createElement('a');brand.className='sf-brand';brand.href='/';
+  var mark=document.createElement('span');mark.className='sf-logo';mark.textContent='♫';
+  var name=document.createElement('span');name.textContent='SF-AirPlay';brand.appendChild(mark);brand.appendChild(name);
+  var right=document.createElement('div');right.className='sf-right';
+  var tag=document.createElement('span');tag.className='sf-tag';tag.textContent='ESP32-S3  ·  Experimental';
+  var toggle=document.createElement('button');toggle.type='button';toggle.className='sf-theme-btn';toggle.title='Toggle light or dark appearance';toggle.setAttribute('aria-label','Toggle appearance');
+  right.appendChild(tag);right.appendChild(toggle);top.appendChild(brand);top.appendChild(right);
+  root.insertBefore(top,root.firstChild);
+  var footer=document.createElement('footer');footer.className='sf-footer';footer.textContent='SF-AirPlay · Local audio control · Experimental firmware';root.appendChild(footer);
+  function setTheme(light){root.classList.toggle('sf-light',light);toggle.textContent=light?'☾':'☀';try{localStorage.setItem('sf-theme',light?'light':'dark')}catch(e){}}
+  var saved='';try{saved=localStorage.getItem('sf-theme')||''}catch(e){}
+  setTheme(saved==='light');toggle.addEventListener('click',function(){setTheme(!root.classList.contains('sf-light'))});
+})();
+
+</script>
+</body></html>
