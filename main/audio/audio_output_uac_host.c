@@ -184,6 +184,8 @@ static void playback(void *arg) {
         free(pcm); free(out); vTaskDelete(NULL); return;
     }
     while (s_running) {
+        /* Give the CPU idle task time to run. */
+        vTaskDelay(1);
         if (s_unplugged) {
             ESP_LOGW(TAG, "USB DAC disconnected; closing interface");
             close_dac();
